@@ -7,12 +7,6 @@ import { Container } from './styles'
 export function Summary() {
   const { transactions } = useTransactions()
 
-  // const totalDeposit = transactions.reduce(function (accumulator, transaction) {
-  //   if (transaction.type === 'deposit')
-  //     return accumulator + transaction.amount
-  //   return accumulator
-  // }, 0)
-
   const { deposits, withdraws, total } = transactions.reduce((accumulator, transaction) => {
     if (transaction.type === 'deposit') {
       accumulator.deposits += transaction.amount
@@ -37,7 +31,7 @@ export function Summary() {
           <p>Entradas</p>
           <img src={incomeImg} alt="Entradas" />
         </header>
-        <strong>
+        <strong className="deposit">
           {new Intl.NumberFormat('pt-BR', {
             style: 'currency',
             currency: 'BRL'
@@ -49,7 +43,7 @@ export function Summary() {
           <p>Saídas</p>
           <img src={outcomeImg} alt="Saídas" />
         </header>
-        <strong>
+        <strong className="withdraw">
           {new Intl.NumberFormat('pt-BR', {
             style: 'currency',
             currency: 'BRL'
